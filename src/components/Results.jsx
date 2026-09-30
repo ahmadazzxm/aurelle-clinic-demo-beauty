@@ -31,8 +31,8 @@ function BeforeAfter({ slug, label }) {
       onPointerMove={(e) => e.currentTarget.hasPointerCapture(e.pointerId) && fromPointer(e)}
       onKeyDown={onKeyDown}
     >
-      <img src={`/images/before-after-${slug}-before.svg`} alt="Before" draggable="false" />
-      <img className="ba__after" src={`/images/before-after-${slug}-after.svg`} alt="After" draggable="false" />
+      <img src={`/images/before-after-${slug}-before.jpg`} alt="Before" draggable="false" />
+      <img className="ba__after" src={`/images/before-after-${slug}-after.jpg`} alt="After" draggable="false" />
       <span className="ba__label ba__label--l">Before</span>
       <span className="ba__label ba__label--r">After</span>
       <div className="ba__handle" />
