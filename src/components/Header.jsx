@@ -15,10 +15,15 @@ function Logo() {
   );
 }
 
+const watched = ['programs', 'proc', 'results', 'book'];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [current, setCurrent] = useState('');
   const openBtn = useRef(null);
   const closeBtn = useRef(null);
+  const sentinel = useRef(null);
   const first = useRef(true);
 
   useEffect(() => {
@@ -33,8 +38,30 @@ export default function Header() {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
+  useEffect(() => {
+    const top = new IntersectionObserver(([e]) => setScrolled(!e.isIntersecting));
+    top.observe(sentinel.current);
+
+    const spy = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) setCurrent(e.target.id);
+        else setCurrent((c) => (c === e.target.id ? '' : c));
+      }),
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    watched.forEach((id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+
+    return () => { top.disconnect(); spy.disconnect(); };
+  }, []);
+
+  const link = ([label, href]) => (
+    <a key={label} href={href} aria-current={href === `#${current}` ? 'true' : undefined}>{label}</a>
+  );
+
   return (
     <>
+      <div ref={sentinel} className="head-sentinel" aria-hidden="true" />
+
       <div className="menu" hidden={!open} id="menu" onClick={(e) => e.target.closest('a') && setOpen(false)}>
         <div className="menu__top">
           <button ref={closeBtn} className="icon" type="button" aria-label="Close menu" onClick={() => setOpen(false)}><Icon name="x" size={24} /></button>
@@ -45,12 +72,10 @@ export default function Header() {
         </nav>
       </div>
 
-      <header className="head">
+      <header className="head" data-scrolled={scrolled}>
         <button ref={openBtn} className="icon head__burger" type="button" aria-label="Menu" aria-controls="menu" aria-expanded={open} onClick={() => setOpen(true)}><Icon name="list" size={24} /></button>
         <Logo />
-        <nav className="head__nav" aria-label="Primary">
-          {nav.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
-        </nav>
+        <nav className="head__nav" aria-label="Primary">{nav.map(link)}</nav>
         <div className="head__end">
           <button className="icon" type="button" aria-label="Search"><Icon name="search" /></button>
           <a className="chip head__book" href="#book">Book a consultation</a>

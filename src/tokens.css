@@ -1,33 +1,32 @@
-/* Hallmark · genre: editorial · macrostructure: Split Studio · theme: custom (Aurelle) · nav: N9 · footer: Ft7
- * axes: paper-band light / display-style classical-serif (roman) / accent-hue warm (rose, 14°)
- * pre-emit critique: P5 H4 E4 S4 R5 V4 */
 :root {
   /* colour: near-white paper tinted toward the rose anchor, plum ink */
-  --color-paper:      oklch(99.2% 0.003 15);
-  --color-paper-2:    oklch(97.6% 0.006 15);
-  --color-blush:      oklch(95.8% 0.014 15);
-  --color-rule:       oklch(92.5% 0.006 15);
-  --color-rule-strong:oklch(74% 0.02 10);
-  --color-ink:        oklch(33% 0.03 335);
-  --color-muted:      oklch(48% 0.025 335);
-  --color-accent:     oklch(52% 0.10 14);
+  --color-paper:        oklch(99.2% 0.003 15);
+  --color-paper-2:      oklch(97.6% 0.006 15);
+  --color-blush:        oklch(95.8% 0.014 15);
+  --color-blush-deep:   oklch(92% 0.026 14);
+  --color-rule:         oklch(92.5% 0.006 15);
+  --color-rule-strong:  oklch(74% 0.02 10);
+  --color-ink:          oklch(33% 0.03 335);
+  --color-muted:        oklch(48% 0.025 335);
+  --color-accent:       oklch(52% 0.10 14);
   --color-accent-hover: oklch(45% 0.10 14);
-  --color-on-accent:  oklch(99.2% 0.003 15);
-  --color-focus:      var(--color-accent);
-  --color-scrim:      color-mix(in oklch, var(--color-paper) 88%, transparent);
-  --color-scrim-soft: color-mix(in oklch, var(--color-paper) 0%, transparent);
-  --color-shadow:     oklch(30% 0.03 335 / .14);
+  --color-on-accent:    oklch(99.2% 0.003 15);
+  --color-focus:        var(--color-accent);
+  --color-scrim:        color-mix(in oklch, var(--color-paper) 92%, transparent);
+  --color-scrim-clear:  color-mix(in oklch, var(--color-paper) 0%, transparent);
+  --color-shadow:       oklch(30% 0.03 335 / .14);
+  --color-shadow-soft:  oklch(30% 0.03 335 / .08);
 
   /* type */
   --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --text-xs: 0.6875rem;
-  --text-sm: 0.8125rem;
-  --text-base: 0.9375rem;
-  --text-lg: 1.125rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.1875rem;
   --text-h3: clamp(2rem, 3.4vw, 2.75rem);
   --text-h2: clamp(2.5rem, 5vw, 4rem);
-  --text-display: clamp(3.25rem, 8.4vw, 7.25rem);
+  --text-display: clamp(3.25rem, 7vw, 6rem);
 
   /* space (4pt) */
   --space-1: 0.25rem;
@@ -46,11 +45,12 @@
   --radius-sm: 2px;
   --radius-pill: 999px; /* arches and avatars only */
   --rule-hair: 1px;
-  --ease-out: cubic-bezier(.22, 1, .36, 1);
-  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
-  --dur-fast: 160ms;
-  --dur-base: 320ms;
-  --dur-slow: 720ms;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --dur-press: 140ms;
+  --dur-fast: 180ms;
+  --dur-base: 300ms;
+  --dur-slow: 640ms;
 }
 
 /* z-index scale */
